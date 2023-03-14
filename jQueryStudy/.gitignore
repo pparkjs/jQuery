@@ -120,7 +120,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# web
+# Web
 META-INF/
 WEB-INF/
 
