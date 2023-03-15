@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+
+<script src="../js/jquery-3.6.4.min.js"></script>
+
+<script type="text/javascript">
+	
+function proc1(){
+	
+	ptag = $('<p class="pp" onclick="pclick(this)">Hello jQuery</p>')
+	$('#result1').append(ptag); //appendChild(ptag)와 동일
+// 	$(ptag).appendTo('#result1')
+
+	
+}	
+
+function pclick(pel){
+	pel.style.background = "yellow";
+	
+	$(pel).css('color', 'red');
+}
+
+function proc2(){
+// 	ptag = $("<p></p>", {})
+// 이랗게 한번에 열고 닫고 가능 {} 안에는 propertis (객체 형식) 들어감
+ 	ptag = $("<p/>", {
+ 			"class" : "pp2",
+ 			"text"  : "Hello jQuery",
+ 			"click" : function(){
+ 				//클릭한 p태그가 this가 됨
+ 				$(this).css('background', 'pink')
+ 			}
+ 	}) 
+ 	
+ 	$('#result2').append(ptag);
+}
+
+function proc3(){
+	//클릭 지운 버전 
+ 	ptag = $("<p/>", {
+			"class" : "pp2",
+			"text"  : "Hello jQuery"
+	}) 
+	$('#result3').append(ptag);
+}
+
+function proc4(){
+	imgs = ["../images/coffee1.jpg", "../images/대나무숲.jpg"
+		,"../images/등대.jpg","../images/뱅쇼.jpg"
+		,"../images/셔틀콕.jpg","../images/문상훈.jpg"
+		,"../images/문상훈2.jpg","../images/수국10.jpg"
+		,"../images/영화2.jpg","../images/카페라떼.jpg"]
+	 
+	rand = parseInt(Math.random() * imgs.length);
+	
+	//alt를 위해 문자열 길이가 다다른 이미지 이름만 자르기 위한 방식
+	valt = imgs[rand];
+	start = valt.lastIndexOf("/")+1;
+	end = valt.lastIndexOf(".");
+	valt = valt.slice(start, end);
+	
+	vimg = $('<img>', {
+		"src" : imgs[rand],
+		"alt" : valt,
+		"class" : "image"
+	})
+	
+	$('#result4').append(vimg);
+	
+}
+
+
+
+
+// 이렇게하면 애가 최초로 실행하는거라서 #pp2가 없어서 안됨
+// $('#pp2').on('click', function(){
+	
+// })
+
+
+$(document).ready(function(){
+	
+	//#pp2가 실행후에 동적으로 새롭게 생성된요소의 이벤트가 아니라 pp2생성해도
+	// 클릭해도 변화 없음 -> 선택자 onclick
+	//선택자방식 사용할려면 body태그 에서 이미 완성된 것만 가능하고
+    // $('.pp2').on('click', function(){
+		
+    // })
+
+	//document를 이용해서 동적으로 바꾼거
+	//document 방식을 사용하는 거는 처음에 없다가 어떠한 클릭 이벤트 발생시 생성될때 사용
+	//#pp2가 실행후에 동적으로 새롭게 생성된요소이고, 새로운 요소의 이벤트 핸들러 작성
+	$(document).on('click', '.pp2', function(){
+		alert("hello")
+	})
+	
+	$(document).on('click', '.image', function(){
+		//클릭한 image가 this
+		$(this).css('border', '3px solid red');
+	})
+	
+})
+
+</script>
+
+<style>
+img {
+	width : 100px;
+	height : 100px;
+	margin : 5px;
+}
+</style>
+</head>
+<body>
+
+
+<div class="box">
+	<p>
+	새로운 요소를 생성한다
+	$(html문장)<br>
+	$('#result1').append(ptag)<br>
+	ptag = $('&lt;p class="pp" onclick="pclick(this)">Hello jQuery&lt;/p>')
+	</p>
+	
+	<input type="button" value="확인" onclick="proc1()">
+	<br><br>
+	<div class="result" id="result1"></div>
+</div>
+
+<div class="box">
+	<pre>
+	새로운 요소를 생성한다
+	$('태그이름',{ 속성들 })
+		
+	ptag = $("&lt;p/>", {
+ 			"class" : "ppw",
+ 			"text"  : "Hello jQuery",
+ 			"click" : function(){
+ 				//클릭한 p태그가 this가 됨
+ 				$(this).css('background', 'pink')
+ 			}
+ 	}) 
+	</pre>
+	
+	<input type="button" value="확인" onclick="proc2()">
+	<br><br>
+	<div class="result" id="result2"></div>
+</div>
+
+<div class="box">
+	<pre>
+	새로운 요소를 생성한다
+	$('태그이름',{ 속성들 })
+		
+	ptag = $("&lt;p/>", {
+ 			"class" : "ppw",
+ 			"text"  : "Hello jQuery"
+ 	}) 
+	</pre>
+	
+	<input type="button" value="확인" onclick="proc3()">
+	<br><br>
+	<div class="result" id="result3"></div>
+</div>
+
+<div class="box">
+	<pre>
+	
+	버튼 클릭시 이미지 생성
+	
+	</pre>
+	
+	<input type="button" value="이미지만들기" onclick="proc4()">
+	<br><br>
+	<div class="result" id="result4"></div>
+</div>
+
+
+
+</body>
+</html>

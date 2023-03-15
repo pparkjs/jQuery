@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+
+<script src="../js/jquery-3.6.4.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	//type이 button인 input요소의 배경색 변경 
+	$('#result1 input[type=button]').css('background', 'green');
+	
+	//href가 mailto 로 시작하는 a 요소의 배경색 변경  
+	$('a[href^=mailto]').css('background', 'pink');
+	
+	//id 가 img1인것만 제외한(아닌) img요소의 테두리 변경 
+	$('img[id!=img1]').css('border', '5px solid blue');
+	
+	//src가 png로 끝나는 img 요소의 테두리 변경 
+	$('img[src$=png]').css('border', '3px dotted coral');
+	
+	//type이 text인 input 요소의 테두리 
+	$('input[type=text]').css('border', '4px inset red');
+	
+	//title 이 named 단어(공백구분)를 포함한 img 요소 의 테두리  ->얘는 단어포함
+	$('img[title ~= named]').css('border', '5px double magenta')
+	
+	//href가 power2c를 포함하는 모든 a 요소  의 밑줄 없음 ->애는 글자포함  
+	$('a[href*=power2c]').css('text-decoration', 'none');
+	
+	//id가 little 이거나 little- 로 시작하는  img요소 의 테두리  
+	$('img[id|=little]').css('border', '10px outset red');
+	
+	//alt 속성을 갖는 이미지 요소 의 테두리- 2px 단선  레드 
+	$('img[alt]').css('border','10px solid green');
+	
+})
+
+
+function proc1(){
+	
+	// result1번 바로 다음에 오는 형제 p 찾기
+	$('#result1 + p').css('background', 'skyblue');
+	
+	// $('div#result1')
+	
+	// $('div[id=result1]')
+
+	// result1번 바로 다음에 오는 모든형제 p 찾기
+	$('#result1 ~ p').css('color', 'red');
+
+}
+function proc2(){
+	
+	//title이 있는 거는 배경색 다 그린
+	$('p[title]').css('background', 'green');
+	
+	// title 이름이 h로 시작하는 거 모두
+	$('p[title^=h]').css('font-size', '2.0em');
+	
+}
+
+
+
+</script>
+
+<style>
+ #result1 div{
+ 	height : auto;
+ 	border : 2px dotted green;
+ }
+
+</style>
+</head>
+<body>
+
+
+<div class="box">
+	<p>
+	내용
+	</p>
+	
+	<input type="button" value="확인" onclick="proc1()">
+	<input type="button" value="title확인" onclick="proc2()">
+	<br><br>
+	<p>1</p>
+	<p title="안녕">2</p>
+	<p>3</p>
+	
+	<div class="result" id="result1">
+	
+		<a href="http://www.ddit.or.kr">(재)대덕 인재 개발원</a> <br><br>
+		<a href="mailto:power2c@ddit.or.kr">빠워에게 메일보내기</a> <br><br>
+		<div><label>Some images:</label></div>
+		<div>
+			<img src="../images/image.1.jpg" id="img1" alt="Hibiscus">
+			<img src="../images/image.2.jpg" id="little-Bear" title="A dog named little Bear">
+			<img src="../images/image.3.jpg" id="verbena" alt="Verbena">
+			<img src="../images/image.4.jpg" id="cozmo" title="A puppy named Cozmo">
+			<img src="../images/image.5.jpg" id="tigerLily" alt="Tiger Lily">
+			<img src="../images/image.6.jpg" id="little" title="coffeePot">
+			<img src="../images/산.png">
+		</div>
+		<div id="someDiv">이곳은 ID속성이 <tt>someDiv</tt>인 &lt;div&gt;태그 입니다. </div>
+		
+		<form>
+		  	<div>
+		   		<label>Text:</label> <input type="text" id="aTextField" name="someTextField"/>
+		  	</div>
+		  	
+		   	<button type="submit" id="submitButton">Submit</button>
+		   	<input type="button" value="클릭~~">
+		</form>
+		
+	</div>
+	
+	<p title="hello">4</p>
+	<p title="happy">5</p>
+	<p>6</p>
+</div>
+
+</body>
+</html>

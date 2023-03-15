@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+
+<script src="../js/jquery-3.6.4.min.js"></script>
+
+<script type="text/javascript">
+	
+$(document).ready(function(){
+	
+	$('#btn1').on('click', function(){
+		
+		alert($('body').html());
+	})
+	
+// 	$('#btn2').on('click', function(){
+// 	$('input#btn2').on('click', function(){
+// 	$('input[value=p_html]').on('click', function(){
+ 	$('input[id=btn2]').on('click', function(){
+		
+		//html을 하면 태그를 포함해서 첫번째 애만 가져온다.
+		alert($('#result2 p').html());
+	})
+	
+	$('#btn3').on('click', function(){
+		
+		//text를 하면 해당 태그의 전체 텍스트를 가져온다.
+		alert($('#result2 p').text());
+	})
+	
+	$('#btn4').on('click', function(){
+		
+		str = "";
+		//p개수만큼 i번 ++해서 돌음
+	/*	$('#result2 p').each(function(i){
+			//eq(i)를 안해주면 가장 첫번째의 p태그만 5번 반복됨
+			str += $('#result2 p').eq(i).html() + "\n"
+		}) */
+		
+		
+		// this쓰면 i도 필요 없음
+		/* $('#result2 p').each(function(){
+			//this는 for문을 돌고잇는 해당번째의 p 가리킴
+			str += $(this).html() + "\n"
+		}) */
+		
+		$('#result2 p').each(function(i, v){
+			str += $(v).html() + "\n"
+		})
+		
+		//alert화면으로 찍을때 엔터는 <br>이 아니라 \n 이다.
+		alert(str);
+		
+	})
+})
+</script>
+
+<style>
+ span{
+	background : yellow;
+ }
+
+</style>
+</head>
+
+
+<body>
+
+<div class="box">
+	<p>
+	 body의 내용가져오기<br>
+	 html()<br>
+	 text()<br>
+	</p>
+	
+	<input type="button" value="확인" id="btn1">
+	<br><br>
+	<div class="result" id="result1"> Hello</div>
+</div>
+
+<div class="box">
+	<p>
+	 p태그의 내용가져오기<br>
+	 html() : 첫번째 p태그만 대상으로 하여 내용을 가져온다.<br>
+	  p태그가 여러개일경우 모든 p를 대상으로 하려면 반복문이 필요 하다
+	  $(요소).each(function(arg1, arg2) { })<br>
+	  $.each(요소, function(arg1, arg2{ })<br>
+	  
+	 text()<br>
+	</p>
+	
+	<input type="button" value="p_html" id="btn2">
+	<input type="button" value="p_text" id="btn3">
+	<input type="button" value="allp_html" id="btn4">
+	<br><br>
+	<div class="result" id="result2"> 
+		<p><span>무궁화 꽃</span>이 피었습니다.</p>
+		<p><span>매화 꽃</span>이 피었습니다.</p>
+		<p><span>산수유 꽃</span>이 피었습니다.</p>
+		<p><span>목련 꽃</span>이 피었습니다.</p>
+		<p><span>진달래 꽃</span>이 피었습니다.</p>
+	</div>
+</div>
+
+</body>
+</html>
