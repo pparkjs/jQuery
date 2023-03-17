@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+<script src="../js/jquery-3.6.4.min.js"></script>
+<script>
+$(function(){
+
+	$('#btnview').on('click', function(){
+		str = "";
+		
+		intro = $('#intro').val();
+		//엔터 입력하면 \r\n이 반환됨
+		//  //g는 정규식 나타내는것 \n을 <br>로 바꿔라 라는 거 해준 거 
+		intro = intro.replaceAll(/\n/g, "<br>");
+		
+		str += "이름 : " + $('#user').val() + "<br>";
+		str += "성별 : " + $('.gend:checked').val() + "<br>";
+		str += "소개 :<br>" + intro + "<br>";
+		str += "직업 : " + $('#work option:selected').val() + "<br>";
+		
+		$('#res').html(str);
+		
+	})
+	
+	$('#btnchange').on('click', function(){
+		
+		//이름 입력 - prompt
+		name = prompt("이름 입력");
+		
+		//입력한 이름을 id="user" 요소에 출력
+		
+		$('#user').val(name);
+	})
+	
+	
+	
+})
+
+</script>
+<style>
+#res{
+	overflow: auto;
+}
+</style>
+
+</head>
+<body>
+
+
+<div class="box">
+	<p>
+
+	</p>
+	
+	<input type="button" value="확인" id="btn1">
+	<br><br>
+	<div class="result" id="result1">
+		<form onsubmit="return false;">
+<!-- 		<form> -->
+	  		<label for="user">이름</label>
+	  		<input type="text" id="user" value="korea"><br>
+			
+			<label >성별</label> 
+			<input type="radio" class="gend" name="gend" value="남자" checked >남자
+			<input type="radio" class="gend" name="gend" value="여자"  >여자<br>
+			
+			<label for="intro">소개</label> <br>
+			<textarea id="intro" cols="40" rows="4"></textarea> <br>
+			
+			<label for="work">직업</label>
+			<select id="work">
+				<option value="programmer">프로그래머</option>
+				<option value="progammer">프로게이머</option>
+				<option value="whitehand">백수</option>
+			</select><br>
+			
+<!-- 		버튼 눌러도 안사라지게 할려면 type="button" 쓰던가 form에 onsubmit저거 써라 -->
+			<button type="button" id="btnview">조사하기 </button>
+			<button id="btnchange">이름변경 </button>
+		</form>
+		
+	</div>
+	
+	<div id="res"></div>
+	
+</div>
+
+</body>
+</html>

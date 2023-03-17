@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+<script src="../js/jquery-3.6.4.min.js"></script>
+
+<script>
+	$(function() {
+		$('#append').on('click', function() {
+
+			vimg = $('<img src="../images/Koala.jpg" alt="Koala.jpg" >')
+
+			//$(vimg).appendTo($('#result1'));
+// 			$(vimg).appendTo($('#p1'));
+			//변수는 따로 $기호 안줘도 된다
+			$('#p1').append(vimg);
+		})
+
+		$('#prepend').on('click', function() {
+
+			vimg = $('<img src="../images/Koala.jpg" alt="Koala.jpg" >')
+
+// 			$(vimg).prependTo($('#p1'));
+			$('#p1').prepend(vimg);
+		})
+		
+		$('#before').on('click', function(){
+			vimg = $('<img src="../images/Koala.jpg" alt="Koala.jpg" >')
+			
+// 			$(vimg).insertBefore($('#p2'));
+			$('#p2').before(vimg);
+			
+		})
+		
+		$('#after').on('click', function(){
+			vimg = $('<img src="../images/Koala.jpg" alt="Koala.jpg" >')
+			
+// 			$(vimg).insertAfter($('#p2'));
+			$('#p2').after(vimg);
+			
+		})
+		
+		$('.pp').on('click',function(){
+			
+			tvalue = $(this).attr('title');
+			
+			vimg = $('<img src="../images/' + tvalue + '.jpg" alt="Koala.jpg" >');
+			
+			$(this).append(vimg);
+			
+		})
+
+	})
+</script>
+<style>
+img {
+	width: 50px;
+	height: 50px;
+}
+
+p {
+	border: 1px solid green;
+	padding: 5px;
+}
+</style>
+</head>
+<body>
+
+
+	<div class="box">
+		<p>
+			버튼을 클릭하면 이미지를 만들어서 id="result1" 요소에 추가한다.<br>
+			 append/appendTo<br>
+			prepend/prependTo<br>
+		</p>
+
+		<input type="button" value="뒤로추가" id="append"> 
+		<input	type="button" value="앞으로추가" id="prepend">
+	    <br> <br>
+		<div class="result" id="result1"></div>
+		<p class="pp">코알라</p>
+	</div>
+
+	<div class="box">
+		<p>
+			이미지를 만들어서 id="result2" 요소에 추가한다.<br>
+			이거는 테두리 바깥쪽에 셍긴다.<br>
+			 before/insertBefore<br>
+			after/insertAfter<br>
+		</p>
+
+		<input type="button" value="앞으로추가" id="before"> 
+		<input type="button" value="뒤로추가" id="after">
+		<br> <br>
+		<div class="result" id="result2"></div>
+		<p class="pp" title="Koala" id="p2">코알라</p>
+		<p class="pp" title="Penguins" >펭귄</p>
+		<p class="pp" title="Tulips" >튤립</p>
+		
+	</div>
+	
+
+</body>
+</html>
