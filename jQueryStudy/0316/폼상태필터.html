@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+<script src="../js/jquery-3.6.4.min.js"></script>
+
+<script type="text/javascript">
+
+$(function(){
+	$('#btn1').on('click', function(){
+		//form안에 있는 모든 것중에서 사용 가능한것만 선택해라
+		$('form *:enabled').css('border', '2px solid red');
+		
+		//form안에 있는 모든 것중에서 사용 불가능한것만 선택해라
+		$('form *:disabled').css('border', '5px solid green');
+		
+	})
+	
+	//text에 입력되면 검사 버튼을 사용가능으로 변경
+	$('input:text').on('keyup', function(){
+		
+		//입력된 글자를 가져와서 길이를 구한다.
+		 textvalue = $(this).val().trim();
+		 
+		if(textvalue.length > 0){
+			//사용가능하도록 변경한다. enabled로 하면 안됨 (prop 상태를 변경해주는 메소드)
+			$('input[value=검사]').prop('disabled', false)
+		}
+		
+	})
+})
+
+	
+</script>
+</head>
+<body>
+
+
+<div class="box">
+	<p>
+
+	</p>
+	
+	<input type="button" value="확인" id="btn1">
+	<br><br>
+	<div class="result" id="result1">
+		<form> 
+			<input type="text" name="id" >
+			<input type="button" value="검사" onclick="alert('검사')" disabled="disabled">
+			<br>
+			<input type="password" name="pass"  ><br>
+			
+			<select name="disSelect" disabled>
+		   	   <option>Option1</option>
+		       <option>Option2</option>
+		       <option>Option3</option>
+		       <option>Option4</option>
+			</select>
+			<br>
+			<textarea name="enTextarea" rows=10 cols=20 >text</textarea><br>
+			<input type="button" value="확인" onclick="alert('hello')" disabled="disabled"> <br>
+		
+		</form>
+		
+	</div>
+</div>
+
+</body>
+</html>

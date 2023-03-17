@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+<script src="../js/jquery-3.6.4.min.js"></script>
+
+<script type="text/javascript">
+
+// $(document).ready(function(){
+$(function(){	
+	$('#btn1').on('click', function(){
+// 		$('li').css('border', '2px dotted blue');
+// 		$('li:first, li:last').css('background','yellow');
+	// 위 필터보다 이렇게 메소드 쓰는걸 더 권장
+		$('li').first().css('background', 'yellow');
+		$('li').last().css('background', 'yellow');
+		
+// 		$('li:eq(5)').css('background', 'red');
+		$('li').eq(5).css('backgroun','red');
+		
+// 		$('li:lt(4)')
+		$('li').even().css('font-size', '2.0em');
+		
+// 		$('li').filter(':lt(4)').css('font-size','2.0em').css('font-weight', 'bold');
+		$('li').filter(':lt(4)').css({'font-size' : '2.0em', 'font-weight':'bold' });
+		
+	})
+	
+	$('#btn2').on('click', function(){
+		
+		$('tr:even')
+		$('tr').even().css('background', 'lightgreen');
+		$('tr').odd().css('background', 'lightgray');
+		
+// 		$('tr:first')
+		$('tr').first().css({ 'background': 'black', 
+							  'color' : 'white',
+							  'font-size' : '1.5em',
+							  'font-weight' : 'bold'});
+		
+	})
+})
+
+
+</script>
+
+<style>
+table{
+	border : 1px solid blue;
+	
+}
+
+td{
+	width : 250px;
+	height : 50px;
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="box">
+	<p>
+
+	</p>
+	
+	<input type="button" value="확인" id="btn1">
+	<br><br>
+	<div class="result" id="result1">
+			
+	<ul>
+		<li> one </li>
+		<li> two </li>
+		<li>  three </li>
+		<li> four </li>
+		<li> five </li>
+		<li> six</li>
+		<li> seven</li>
+		<li>eight</li>
+		<li>nine</li>
+	</ul>
+	
+	</div>
+</div>
+
+<div class="box">
+	<p>
+
+	</p>
+	
+	<input type="button" value="확인" id="btn2">
+	<br><br>
+	<div class="result" id="result1">
+		<table border="1">
+			<tr>
+				<td>일</td>
+				<td>이</td>
+				<td>삼</td>
+				<td>사</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>	
+	</div>
+</div>
+
+</body>
+</html>

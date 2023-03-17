@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+<script src="../js/jquery-3.6.4.min.js"></script>
+
+<script type="text/javascript">
+
+function proc1(){
+	//td를 tr로 바꾸면 줄마다 색이 바뀐다.
+/*	$('td:first-child').css('background', '#f198aa');
+	$('td:nth-child(2)').css('background', '#E08EB1');
+	$('td:nth-child(3)').css('background', '#FFDCFF');
+	$('td:nth-child(4)').css('background', '#FFF0F5');
+	
+	$('td:first-child').css('background', 'black'); */
+
+	$('td:first-child').css('background', '#f198aa');
+	$('td:nth-child(2)').css('background', '#E08EB1');
+	$('td:nth-child(3)').css('background', '#FFDCFF');
+	$('td:nth-child(4)').css('background', '#FFF0F5');
+	
+	//이거는 td를 이미 바꿔서 tr로 해도 못바꾸는데 (같아야함)
+	$('tr:first-child').css('background', 'black'); 
+	
+	//이거는 첫번째 줄에 모든 td야 라고 부르면서 다 바꿀 수 있음
+	$('tr:first-child td').css('background', 'black'); 
+}
+
+
+</script>
+
+<style>
+table{
+	border : 1px solid blue;
+	
+}
+
+td{
+	width : 250px;
+	height : 50px;
+	text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="box">
+	<p>
+
+	</p>
+	
+	<input type="button" value="확인" onclick="proc1()">
+	<br><br>
+	<div class="result" id="result1">
+			<table border="1">
+			<tr>
+				<td>일</td>
+				<td>이</td>
+				<td>삼</td>
+				<td>사</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	
+	</div>
+</div>
+
+</body>
+</html>

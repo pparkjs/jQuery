@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+<script src="../js/jquery-3.6.4.min.js"></script>
+
+<script>
+$(function(){
+	$('#btn1').on('click', function(){
+		
+		str = "";
+		//반복해줘서 체크한 거만큼 돌음 반복해서 가져옴
+		$('input:checkbox:checked').each(function(){
+			//체크박스에서 체크된 아이템을 가져온다. (이렇게 하면 첫번째꺼만 여러번 나옴)
+// 			str += $('input:checkbox:checked').val() + " ";
+			
+			//그래서 이렇게 바꿈 (해당번째가 this가 됨)
+			str += $(this).val() + " ";
+		})
+		
+		
+		alert(str);
+	})
+	
+})
+
+
+</script>
+</head>
+<body>
+
+
+<div class="box">
+	<p>
+
+	</p>
+	
+	<input type="button" value="확인" id="btn1">
+	<br><br>
+	<div class="result" id="result1">
+		<form>
+			취 미 :
+			<input type="checkbox" name="hobby" value="여행" checked >여행
+			<input type="checkbox" name="hobby" value="장기">장기
+			<input type="checkbox" name="hobby" value="바둑">바둑
+			<input type="checkbox" name="hobby" value="독서" >독서
+			<input type="checkbox" name="hobby" value="낚시">낚시<br><br>
+		</form>
+	</div>
+</div>
+
+</body>
+</html>
