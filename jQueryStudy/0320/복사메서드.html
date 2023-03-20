@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+<script src="../js/jquery-3.6.4.min.js"></script>
+<script>
+$(function(){
+	$('.pp').on('click', function(){
+// 		this.style.fontSize = "20px"
+		
+		//+= 하면 누를때마다 글자가 커진다.
+		$(this).css('font-size', "+=5px")
+	})
+	
+	//이거는 복사만 되고 이벤트는 실행안된다.
+	$('#clone').on('click', function(){
+		p1 = $('#p1').clone();
+		
+		$('#result1').append(p1);
+	})
+	
+	//이거는 복사본에서도 이벤트 실행됨
+	$('#clonetrue').on('click', function(){
+		$('#p2').clone(true).appendTo($('#result2'));
+	})
+})
+</script>
+</head>
+<body>
+
+
+<div class="box">
+	<p>
+
+	</p>
+	
+	<input type="button" value="복사" id="clone">
+	<input type="button" value="복사true" id="clonetrue">
+	<br><br>
+	<p class="pp" id="p1">사랑은 늘 도망가</p>
+	<p class="pp" id="p2">우리들의 블루스</p>
+	
+	<div class="result" id="result1"></div>
+	<div class="result" id="result2"></div>
+</div>
+
+</body>
+</html>
