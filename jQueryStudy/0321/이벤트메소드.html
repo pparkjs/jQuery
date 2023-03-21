@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="../css/mystyle.css" />
+    <script src="../js/jquery-3.6.4.min.js"></script>
+
+    <script>
+      $(function () {
+        // 다 똑같은 형식이지만 on을 젤 많이 쓴다.
+        // $('#btn1').bind('click', function(){
+
+        // })
+        // $('#btn1').click(function(){
+
+        // })
+
+        $("#btn1").on("click", function () {
+          ptag = "<p class='pp'>Hello</p>";
+          $("#result1").append(ptag);
+        });
+
+        $("#btn2").on("click", function () {
+          $("#btn1").off("click");
+        });
+
+        // 클릭 딱 한번만 하고 그뒤로는 실행 안되는것
+        $("#btn3").one("click", function () {
+          ptag = "<p class='pp'>Hello</p>";
+          $("#result3").append(ptag);
+        });
+
+        //bind형식의 이벤트핸들러로  미리 만들어진 걸 실행하는방식
+        // $('.pp').on('click', function(){
+        //     alert("pp");
+        // })
+
+        // $(document).delegate(".pp", "click", function () {});
+        $(document).on("click", ".pp", function () {
+          cr = parseInt(Math.random() * 256);
+          cg = parseInt(Math.random() * 256);
+          cb = parseInt(Math.random() * 256);
+
+          //16진수로 바꾼것
+          cr16 = cr.toString(16);
+          cg16 = cg.toString(16);
+          cb16 = cb.toString(16);
+          $(this).css("background", "#" + cr16 + cg16 + cb16);
+        });
+
+        $("#pClear").on("click", function () {
+          //새로 만들어진 p태그의 이벤트 핸들러를 제거
+          $(document).off("click", ".pp");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      <p>
+        버튼 클릭시 p태그를 생성하여 result1에 추가 한다.<br />
+        이벤트종료 버튼 클릭시 더이상 클릭이벤트 핸들러는 작동하지 않는다.<br />
+      </p>
+
+      <input type="button" value="확인" id="btn1" />
+      <input type="button" value="이벤트종료" id="btn2" />
+
+      <br /><br />
+      <div class="result" id="result1">
+        새롭게 만들어진 요소의 이벤트 작석시 delegate방식으로 처리<br />
+        $(document).on("click", ".pp", function () { });<br />
+        <input type="button" value="p클릭해제" id="pClear" />
+      </div>
+    </div>
+
+    <div class="box">
+      <p>
+        버튼 클릭시 p태그를 생성하여 result3에 추가 한다.<br />
+        한번만 실행되도록 한다
+      </p>
+
+      <input type="button" value="확인" id="btn3" />
+      <br /><br />
+      <div class="result" id="result3"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+d<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css" />
+<script src="../js/jquery-3.6.4.min.js"></script>
+
+<script>
+var xhr = new XMLHttpRequest();
+
+function proc1() {
+  //입력한 값을가져온다.
+  tValue = document.ff.txt.value;
+  passValue = document.ff.pass.value;
+		console.log(tValue, passValue);       
+  //요청
+  xhr.open("get", "test.jsp?txt=" + tValue + "&pass=" + passValue, true);
+  xhr.send();
+
+  //응답
+  xhr.onreadystatechange = function(){
+      alert(this.readyState);
+      if(this.readyState == 4 && this.status == 200){
+          res = this.responseText ;
+
+          document.getElementById('res').innerHTML = res;
+      }
+  }
+}
+</script>
+</head>
+<body>
+<div class="box">
+  <p>
+    기존의 동기방식을 이용한 서버전송과 응답 <br />
+    요청을 하고 응답을 받을때 처리결과 페이지를 통째로 받는다
+  </p>
+
+  <input type="button" value="확인" onclick="proc1()" />
+  <br /><br />
+  <div class="result" id="result1">
+  
+    <form action="test.jsp" method="post">
+      Text : <input type="text" name="txt" /><br />
+      Password : <input type="password" name="pass" /><br /><br />
+
+      <input type="submit" value="전송버튼" />
+    </form>
+  </div>
+</div>
+
+<div class="box">
+  <p>
+    javascript를 이용한 비동기방식을 이용한 서버전송과 응답 <br />
+    요청을 하고 응답을 받을때 처리결과 데이터를 받아서 요청페이지를 업데이트한다.
+  </p>
+
+  <input type="button" value="확인" onclick="proc1()" />
+  <br /><br />
+  <div class="result" id="result2">
+    <form name="ff">
+      Text : <input type="text" name="txt" /><br />
+      Password : <input type="password" name="pass" /><br /><br />
+
+      <input type="button" value="전송버튼" onclick="proc1()" />
+    </form>
+  </div>
+
+  <div id="res">
+    
+  </div>
+</div>
+</body>
+</html>
