@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+<script src="../js/jquery-3.6.4.min.js"></script>
+
+
+<script>
+
+	xhr = new XMLHttpRequest();
+	$(function(){
+	$('#txt').on('click', function(){
+		//요청
+		xhr.open("get", "text.jsp", true);
+		xhr.send();
+
+		//응답
+		xhr.onreadystatechange = function(){
+			
+			if(this.readyState == 4 && this.status == 200){
+				res = this.responseText; 
+				/* res = 홍길동/진달래/무궁화/삼천리/금수강산/라일락 */
+				
+				res = res.split("/"); //이제 res는 배열이됨
+				/* $.each(res.function(){
+					
+				}) */
+				code = "<ul>"
+				$(res).each(function(i){
+					code += "<li>" + res[i] + "</li>"
+				})
+				code += "</ul>"
+				
+				document.getElementById('result1').innerHTML = code;
+			}
+		}
+	})
+
+	$('#jarr').on('click', function(){
+
+		//요청
+		xhr.open("get", "jsonArr.jsp", true);
+		xhr.send();
+		//응답
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				res = this.responseText;
+				
+				//json배열로 변환 한다.
+				res = JSON.parse(res);
+				
+				code = "<ol>";
+				//res1번쨰가 v가되고 res2번쨰가 v가되고 ~~ v는 변수이름임
+				$.each(res, function(i, v){
+					code += "<li>" + v + "</li>"
+				})	
+				code += "</ol>"
+				
+				document.getElementById('result2').innerHTML = code;
+			}
+		}
+	})
+	
+	$('#jobj').on('click', function(){
+		//요청
+		xhr.open("get", "jsonObj.jsp",true);
+		xhr.send();
+		
+		//응답
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				res = this.responseText;
+				
+				res = JSON.parse(res);
+				
+				code = "아이디 : " + res.id + "<br>";
+				code += "이름 : " + res.name + "<br>";
+				code += "전화번호 : " + res.tel + "<br>";
+				code += "메일 : " + res.mail + "<br>";
+				
+				document.getElementById("result3").innerHTML = code;
+			}
+		}
+		
+	})
+	
+	$('#jobarr').on('click', function(){
+		//요청
+		xhr.open("get", "jsonObjArr.jsp",true);
+		xhr.send();
+		
+		//응답
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				res = this.responseText;
+				
+				res = JSON.parse(res);
+				
+				code = "";
+				$.each(res, function(i, v){
+					code += (i+1) + "번째 회원정보 <br>";
+					code += "아이디 : " + v.id + "<br>"; 
+					code += "이름 : " + v.name + "<br>";
+					code += "전화번호 : " + res[i].tel + "<br>";
+					code += "메일 : " + res[i].mail + "<br><br>";
+				})
+				
+				document.getElementById('result4').innerHTML = code;
+				
+			}
+		}
+	})
+
+// 	//동기방식
+// 	$('#sync').on('click', function(){
+// 		location.href="sync.jsp";
+// 	})
+})
+
+</script>
+
+<style>
+
+#result{
+	box-sizing: border-box;
+	width : 95%;
+	display: flex;
+	flex-wrap: wrap; /*1열로 되어있다가 화면작아지면 밑으로 내려감*/
+	height : auto;
+}
+
+#result div{
+	border: 1px solid blue;
+	padding : 10px;
+	margin: 5px;
+	flex : 1;
+	width : 300px;
+}
+
+div.box{
+	height: auto;
+
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="box">
+	<p>
+
+	</p>
+	
+	<input type="button" value="동기" onclick="location.href='syns.jsp'"> 
+<!-- 	<input type="button" value="동기" id="sync"> -->
+	<input type="button" value="txt" id="txt">
+	<input type="button" value="json배열" id="jarr">
+	<input type="button" value="jsonObject" id="jobj">
+	<input type="button" value="jsonObj배열" id="jobarr">
+	<br><br>
+
+	<div id="result">
+		<div class="result" id="result1"></div>
+		<div class="result" id="result2"></div>
+		<div class="result" id="result3"></div>
+		<div class="result" id="result4"></div>
+	</div>
+</div>
+
+</body>
+</html>
