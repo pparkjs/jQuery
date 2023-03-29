@@ -27,7 +27,7 @@ $(function(){
 			 })
 				
 			 $('#lprod').html(code);
-         	
+			 $('#lprod').trigger('change');
          },
          error : function(xhr){
 				alert("상태 : "+ xhr.status);                
@@ -68,6 +68,7 @@ $(function(){
 				}
 				
 				$('#prod').html(code);
+				$('#prod').trigger('change');
 				
 			},
 			error : function(xhr){
@@ -83,7 +84,10 @@ $(function(){
 	$(document).on('change','#prod', function(){
 		
 		idValue = $(this).val().trim();
-		
+		//값이 0이면 ProdDetails.do로 안감
+		if(idValue=="0"){
+			return false;
+		}
 		//option value(prod_id)값
 		$.ajax({
 			url : "http://localhost/jqpro/ProdDetail.do",
